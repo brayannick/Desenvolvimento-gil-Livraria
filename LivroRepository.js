@@ -1,3 +1,7 @@
+function normalizarIsbn(isbn) {
+  return String(isbn).replace(/[-\s]/g, '');
+}
+
 export class LivroRepository {
   #livros = [];
   #proximoId = 1;
@@ -9,8 +13,8 @@ export class LivroRepository {
   }
 
   existeIsbn(isbn) {
-    const alvo = String(isbn).trim();
-    return this.#livros.some((livro) => String(livro.isbn).trim() === alvo);
+    const alvo = normalizarIsbn(isbn);
+    return this.#livros.some((livro) => normalizarIsbn(livro.isbn) === alvo);
   }
 
   listar() {
