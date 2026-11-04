@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px 16px;
+  background: #f1f5f9;
+  color: #1e293b;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px #00000014;
+}
+
+h1 {
+  margin: 0 0 24px;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+form,
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  gap: 16px;
+}
+
+.campo {
+  gap: 6px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+button {
+  padding: 12px;
+  border-radius: 4px;
+  font: inherit;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #64748b;
+}
+
+button {
+  border: 0;
+  background: #1d4ed8;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1e40af;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+#mensagem:not(:empty) {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+#mensagem.sucesso {
+  background: #dcfce7;
+  color: #166534;
+}
+
+#mensagem.erro {
+  background: #fee2e2;
+  color: #991b1b;
+}
