@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Livro } from '../js/Livro.js';
+import { Livro } from '../Livro.js';
 
 test('livro válido mantém os atributos e começa sem identificador', () => {
   const livro = new Livro('Dom Casmurro', 'Machado de Assis', '9788535914849', 1899);
