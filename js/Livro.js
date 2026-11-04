@@ -1,3 +1,5 @@
+﻿import { MENSAGENS } from './mensagens.js';
+
 function campoVazio(valor) {
   if (valor === null || valor === undefined) return true;
   if (typeof valor === 'number') return Number.isNaN(valor);
@@ -20,14 +22,14 @@ export class Livro {
   validarDados() {
     const erros = [];
 
-    if (campoVazio(this.titulo)) erros.push('Informe o título.');
-    if (campoVazio(this.autor)) erros.push('Informe o autor.');
-    if (campoVazio(this.isbn)) erros.push('Informe o ISBN.');
+    if (campoVazio(this.titulo)) erros.push(MENSAGENS.TITULO_OBRIGATORIO);
+    if (campoVazio(this.autor)) erros.push(MENSAGENS.AUTOR_OBRIGATORIO);
+    if (campoVazio(this.isbn)) erros.push(MENSAGENS.ISBN_OBRIGATORIO);
 
     if (campoVazio(this.anoPublicacao)) {
-      erros.push('Informe o ano de publicação.');
+      erros.push(MENSAGENS.ANO_OBRIGATORIO);
     } else if (!anoValido(this.anoPublicacao)) {
-      erros.push('O ano de publicação deve ser um número inteiro positivo.');
+      erros.push(MENSAGENS.ANO_INVALIDO);
     }
 
     return erros;
@@ -40,10 +42,10 @@ export class Livro {
     }
 
     if (repositorio.existeIsbn(this.isbn)) {
-      return { sucesso: false, mensagem: 'Já existe um livro cadastrado com este ISBN.' };
+      return { sucesso: false, mensagem: MENSAGENS.ISBN_DUPLICADO };
     }
 
     repositorio.salvar(this);
-    return { sucesso: true, mensagem: 'Livro cadastrado com sucesso.' };
+    return { sucesso: true, mensagem: MENSAGENS.CADASTRO_SUCESSO };
   }
 }
