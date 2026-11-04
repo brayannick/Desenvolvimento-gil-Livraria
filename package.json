@@ -1,0 +1,10 @@
+{
+  "name": "biblioteca",
+  "version": "0.1.0",
+  "description": "Sistema de Gerenciamento de Biblioteca - US01 Cadastrar Livros",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
