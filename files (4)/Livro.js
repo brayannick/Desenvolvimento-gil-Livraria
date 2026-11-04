@@ -1,13 +1,18 @@
-import { MENSAGENS } from './Mensagens.js';
+export const MENSAGENS = Object.freeze({
+  TITULO_OBRIGATORIO: 'Informe o título.',
+  AUTOR_OBRIGATORIO: 'Informe o autor.',
+  ISBN_OBRIGATORIO: 'Informe o ISBN.',
+  ANO_OBRIGATORIO: 'Informe o ano de publicação.',
+  ANO_INVALIDO: 'O ano de publicação deve ser um número inteiro positivo.',
+  ISBN_DUPLICADO: 'Já existe um livro cadastrado com este ISBN.',
+  ERRO_AO_SALVAR: 'Não foi possível salvar o livro. Tente novamente.',
+  CADASTRO_SUCESSO: 'Livro cadastrado com sucesso.',
+});
 
 function campoVazio(valor) {
   if (valor === null || valor === undefined) return true;
   if (typeof valor === 'number') return Number.isNaN(valor);
   return String(valor).trim() === '';
-}
-
-function anoValido(ano) {
-  return Number.isInteger(ano) && ano > 0;
 }
 
 export class Livro {
@@ -19,6 +24,7 @@ export class Livro {
     this.anoPublicacao = anoPublicacao;
   }
 
+  // Retorna a lista de mensagens de erro (lista vazia = dados válidos).
   validarDados() {
     const erros = [];
 
@@ -28,13 +34,14 @@ export class Livro {
 
     if (campoVazio(this.anoPublicacao)) {
       erros.push(MENSAGENS.ANO_OBRIGATORIO);
-    } else if (!anoValido(this.anoPublicacao)) {
+    } else if (!Number.isInteger(this.anoPublicacao) || this.anoPublicacao <= 0) {
       erros.push(MENSAGENS.ANO_INVALIDO);
     }
 
     return erros;
   }
 
+  // Valida, verifica ISBN duplicado e salva no repositório.
   cadastrarLivro(repositorio) {
     const erros = this.validarDados();
     if (erros.length > 0) {
@@ -45,7 +52,12 @@ export class Livro {
       return { sucesso: false, mensagem: MENSAGENS.ISBN_DUPLICADO };
     }
 
-    repositorio.salvar(this);
+    try {
+      repositorio.salvar(this);
+    } catch {
+      return { sucesso: false, mensagem: MENSAGENS.ERRO_AO_SALVAR };
+    }
+
     return { sucesso: true, mensagem: MENSAGENS.CADASTRO_SUCESSO };
   }
 }
