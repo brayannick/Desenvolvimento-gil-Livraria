@@ -3,7 +3,7 @@ import { LivroRepository } from './LivroRepository.js';
 
 const formulario = document.getElementById('formCadastro');
 const mensagem = document.getElementById('mensagem');
-const repositorio = new LivroRepository();
+const repositorio = new LivroRepository(localStorage);
 
 function lerAno(texto) {
   const valor = texto.trim();
