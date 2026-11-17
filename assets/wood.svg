@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#392219"/>
+  <filter id="wood" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".003 .095" numOctaves="3" seed="8" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="1600" height="1000" filter="url(#wood)" opacity=".26" style="mix-blend-mode:soft-light"/>
+  <g fill="none" stroke="#ac7744" stroke-opacity=".09">
+    <path d="M-30 120Q260 80 490 127T1000 130T1640 95M-30 125Q260 86 490 132T1000 135T1640 100M-20 420Q350 350 710 429T1640 410M-20 429Q350 360 710 438T1640 419M-20 780Q300 820 710 755T1640 790M-20 790Q300 830 710 765T1640 800"/>
+    <ellipse cx="1450" cy="600" rx="150" ry="24"/><ellipse cx="1450" cy="600" rx="110" ry="17"/><ellipse cx="1450" cy="600" rx="65" ry="9"/>
+  </g>
+  <g stroke="#110906" stroke-opacity=".35"><path d="M0 250H1600M0 500H1600M0 750H1600"/></g>
+</svg>
