@@ -18,3 +18,13 @@ test('RN02, RN04, RN05: cadastra livro válido com id automático e bloqueia ISB
 
   assert.strictEqual(res2.sucesso, false);
 });
+
+test('busca por parte do título sem diferenciar acentos ou maiúsculas', () => {
+  const repo = new LivroRepository();
+  repo.salvar(new Livro('Memórias Póstumas', 'Machado', '123', 1881));
+  repo.salvar(new Livro('O Hobbit', 'Tolkien', '456', 1937));
+  assert.deepEqual(repo.buscarPorTitulo(' MEMORIAS ').map(livro => livro.titulo), ['Memórias Póstumas']);
+  assert.equal(repo.buscarPorTitulo('hob').length, 1);
+  assert.equal(repo.buscarPorTitulo('inexistente').length, 0);
+  assert.equal(repo.buscarPorTitulo(' ').length, 2);
+});

@@ -18,6 +18,10 @@
           <h1>Toda história<br>começa com<br>uma página.</h1>
           <div class="traco" aria-hidden="true"></div>
           <p class="convite">Entre, encontre seu lugar<br>e deixe a leitura continuar.</p>
+          <div id="sessaoConta" class="sessao-conta" hidden>
+            <span id="usuario" role="status"></span>
+            <button id="sair" type="button">Sair da conta</button>
+          </div>
           <span class="numero-pagina" aria-hidden="true">I</span>
         </aside>
         <div class="pagina pagina-formulario">
@@ -44,6 +48,47 @@
             </form>
             <p class="troca">Já tem conta? <button type="button" data-destino="login">Fazer login</button></p>
           </section>
+          <section id="acervo" class="tela pagina-cadastro" aria-labelledby="titulo-acervo" hidden inert>
+            <h2 id="titulo-acervo" tabindex="-1">Cadastro de livros</h2>
+            <p class="subtitulo">Uma nova história para o seu acervo.</p>
+    <form id="formCadastro">
+      <div class="campo">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" name="titulo" required>
+      </div>
+      <div class="campo">
+        <label for="autor">Autor</label>
+        <input type="text" id="autor" name="autor" required>
+      </div>
+      <div class="campo">
+        <label for="isbn">ISBN</label>
+        <input type="text" id="isbn" name="isbn" required>
+      </div>
+      <div class="campo">
+        <label for="anoPublicacao">Ano de publicação</label>
+        <input type="number" id="anoPublicacao" name="anoPublicacao" min="1" step="1" required>
+      </div>
+      <button class="botao-principal" type="submit">Cadastrar</button>
+    </form>
+          <div id="mensagem" aria-live="polite"></div>
+            <p class="navegacao-folha"><button type="button" data-destino="consulta">Ver livros cadastrados <span aria-hidden="true">→</span></button></p>
+          </section>
+          <section id="consulta" class="tela tela-consulta" aria-labelledby="titulo-consulta" hidden inert>
+            <h2 id="titulo-consulta" tabindex="-1">Livros cadastrados</h2>
+            <p class="subtitulo">Encontre sua próxima história.</p>
+            <div class="campo pesquisa-livros">
+              <label for="pesquisaTitulo">Buscar pelo título</label>
+              <input id="pesquisaTitulo" type="search" placeholder="Digite o título do livro…" autocomplete="off" aria-controls="listaLivros">
+            </div>
+            <p id="resultadoBusca" class="resultado-busca" role="status"></p>
+            <ul id="listaLivros" class="lista-livros"></ul>
+            <nav class="paginacao-livros" aria-label="Páginas dos livros cadastrados" hidden>
+              <button id="paginaAnterior" type="button" aria-label="Página anterior">←</button>
+              <span id="paginaAtual" role="status"></span>
+              <button id="proximaPagina" type="button" aria-label="Próxima página">→</button>
+            </nav>
+            <p class="troca"><button type="button" data-destino="acervo">← Cadastrar um livro</button></p>
+          </section>
           <p id="avisoConta" class="aviso-conta" role="status"></p>
           <span class="numero-pagina" aria-hidden="true">II</span>
         </div>
@@ -54,11 +99,10 @@
         <div class="capa-verso"></div>
       </div>
     </div>
-    <button class="pular" id="pular" type="button">Pular abertura</button>
     <p class="estado" id="estado" role="status">Abrindo um novo capítulo…</p>
     <noscript><p class="sem-script">Ative o JavaScript para abrir o livro ou <a href="livros.html">acesse o cadastro de livros</a>.</p></noscript>
   </main>
-  <footer class="rodape"><span>Feito para quem vive entre páginas.</span><a href="livros.html">Explorar cadastro de livros</a></footer>
   <script type="module" src="js/entrada.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

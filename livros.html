@@ -6,10 +6,25 @@
   <title>Cadastro de livros</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <main class="catalogo">
-    <a class="voltar" href="index.html">← Voltar ao livro</a>
-    <h1>Cadastro de livros</h1>
+<body class="entrada entrada-catalogo">
+  <main class="palco" aria-label="Cadastro de livros">
+    <div class="livro aberto livro-cadastro">
+      <div class="miolo">
+        <aside class="pagina pagina-literaria" aria-label="Seu acervo">
+          <div class="ornamento" aria-hidden="true">❧</div>
+          <p class="capitulo">Capítulo III — O acervo</p>
+          <h1>Cada livro,<br>uma nova<br>história.</h1>
+          <div class="traco" aria-hidden="true"></div>
+          <p class="convite">Registre uma obra e dê a ela<br>um lugar na sua biblioteca.</p>
+    <div class="sessao-conta">
+      <span id="usuario" role="status"></span>
+      <button id="sair" type="button" hidden>Sair da conta</button>
+    </div>
+          <span class="numero-pagina" aria-hidden="true">III</span>
+        </aside>
+        <section class="pagina pagina-formulario pagina-cadastro" aria-labelledby="titulo-cadastro-livro">
+          <h2 id="titulo-cadastro-livro">Cadastro de livros</h2>
+          <p class="subtitulo">Uma nova história para o seu acervo.</p>
     <form id="formCadastro">
       <div class="campo">
         <label for="titulo">Título</label>
@@ -27,10 +42,16 @@
         <label for="anoPublicacao">Ano de publicação</label>
         <input type="number" id="anoPublicacao" name="anoPublicacao" min="1" step="1" required>
       </div>
-      <button type="submit">Cadastrar</button>
+      <button class="botao-principal" type="submit">Cadastrar</button>
     </form>
-    <div id="mensagem" aria-live="polite"></div>
+          <div id="mensagem" aria-live="polite"></div>
+          <span class="numero-pagina" aria-hidden="true">IV</span>
+        </section>
+      </div>
+    </div>
   </main>
+
   <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/sessao.js"></script>
 </body>
 </html>

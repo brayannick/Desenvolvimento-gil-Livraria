@@ -52,10 +52,14 @@ Os dados pertencem ao navegador e à origem usados no cadastro; limpar o armazen
 
 ## Interface do livro
 
-Ao carregar a página inicial, o livro aparece fechado, abre a capa e passa três folhas até o login. Os links para criar conta ou voltar ao login repetem a passagem de folhas. A abertura pode ser pulada; a preferência de movimento reduzido mostra o formulário imediatamente. No celular, o livro ocupa uma única página para preservar a leitura dos campos.
+Ao carregar a página inicial, o livro aparece fechado, abre a capa e passa três folhas até o login. Os links para criar conta ou voltar ao login repetem a passagem de folhas. A preferência de movimento reduzido mostra o formulário imediatamente. No celular, o livro ocupa uma única página para preservar a leitura dos campos.
 
-A interface usa HTML, CSS 3D e JavaScript puro, sem bibliotecas de animação ou serviços externos. Login e criação de conta são uma demonstração visual: não criam usuários, não autenticam nem armazenam senhas. Os formulários informam essa limitação ao enviar e limpam o campo de senha. O cadastro de livros continua disponível pelo link no rodapé, sem depender de uma conta.
+A interface usa HTML, CSS 3D e JavaScript puro. A criação de conta salva nome, e-mail normalizado, salt e hash PBKDF2 da senha no `localStorage`, na chave `biblioteca.contas`. Após criar a conta, faça login: o mesmo livro vira as folhas e revela o cadastro de livros, sem navegar para outra página. A sessão fica em `biblioteca.sessao` e pode ser encerrada pelo botão Sair da conta. Senhas precisam ter pelo menos 8 caracteres; e-mails repetidos são rejeitados.
 
-O acabamento usa texturas SVG locais para a granulação de couro e papel e os veios da madeira, combinadas com manchas e sombras em CSS. Ao terminar ou pular a abertura, a capa é ocultada para não permanecer projetada ao lado das páginas.
+Este acesso é uma demonstração local: os dados e a sessão podem ser alterados pelas ferramentas do navegador e não protegem páginas ou dados. Os livros são compartilhados entre as contas do mesmo navegador. Limpar o armazenamento remove contas e sessão. Use localhost ou HTTPS para disponibilizar a Web Crypto API. Não use senhas reais nesta demonstração.
+
+O acabamento usa texturas SVG locais para a granulação de couro e papel e os veios da madeira, combinadas com manchas e sombras em CSS. Ao terminar a abertura, a capa é ocultada para não permanecer projetada ao lado das páginas.
 
 Durante a abertura, as folhas intermediárias ficam sem informações. O formulário é descoberto pela última folha, cujo verso traz o conteúdo da página esquerda; a troca entre login e criação de conta também acontece enquanto as folhas cobrem o formulário.
+
+Na folha de cadastro, use **Ver livros cadastrados** para virar as páginas até a consulta do acervo. A pesquisa por título filtra ao digitar, aceita parte do nome e ignora diferenças de maiúsculas e acentos. A lista exibe título, autor, ano e ISBN e é atualizada após cada cadastro.
