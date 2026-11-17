@@ -55,3 +55,5 @@ Os dados pertencem ao navegador e à origem usados no cadastro; limpar o armazen
 Ao carregar a página inicial, o livro aparece fechado, abre a capa e passa três folhas até o login. Os links para criar conta ou voltar ao login repetem a passagem de folhas. A abertura pode ser pulada; a preferência de movimento reduzido mostra o formulário imediatamente. No celular, o livro ocupa uma única página para preservar a leitura dos campos.
 
 A interface usa HTML, CSS 3D e JavaScript puro, sem bibliotecas de animação ou serviços externos. Login e criação de conta são uma demonstração visual: não criam usuários, não autenticam nem armazenam senhas. Os formulários informam essa limitação ao enviar e limpam o campo de senha. O cadastro de livros continua disponível pelo link no rodapé, sem depender de uma conta.
+
+O acabamento usa texturas SVG locais para a granulação de couro e papel e os veios da madeira, combinadas com manchas e sombras em CSS. Ao terminar ou pular a abertura, a capa é ocultada para não permanecer projetada ao lado das páginas.

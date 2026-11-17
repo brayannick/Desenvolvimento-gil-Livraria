@@ -9,6 +9,7 @@ let ocupado = true;
 
 function concluir(focar = false) {
   clearTimeout(temporizador);
+  document.getElementById('capa').hidden = true;
   livro.classList.remove('virando');
   livro.classList.add('aberto');
   livro.classList.remove('abrindo');
@@ -54,6 +55,6 @@ if (reduzirMovimento.matches) {
 } else {
   requestAnimationFrame(() => {
     livro.classList.add('abrindo');
-    temporizador = setTimeout(() => concluir(), 3200);
+    temporizador = setTimeout(() => concluir(), 3500);
   });
 }

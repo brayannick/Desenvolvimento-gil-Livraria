@@ -34,6 +34,7 @@ test('abre o livro, troca telas com foco e não armazena senhas', async (t) => {
   assert.equal(elemento('login').inert, true);
   avancar();
   assert.equal(elemento('livro').classes.has('aberto'), true);
+  assert.equal(elemento('capa').hidden, true);
   assert.equal(elemento('login').inert, false);
   criar.eventos.click();
   assert.equal(elemento('login').inert, true);
@@ -50,14 +51,17 @@ test('abre o livro, troca telas com foco e não armazena senhas', async (t) => {
   assert.equal(elemento('login').hidden, false);
   assert.equal(elemento('cadastro').hidden, true);
   assert.equal(elemento('titulo-login').focado, true);
+  assert.equal(elemento('capa').hidden, true);
 
   await import('../js/entrada.js?pular');
   elemento('pular').eventos.click();
   assert.equal(tarefas.size, 0);
   assert.equal(elemento('pular').hidden, true);
+  assert.equal(elemento('capa').hidden, true);
 
   globalThis.window.matchMedia = () => ({ matches: true });
   await import('../js/entrada.js?reduzido');
   assert.equal(elemento('login').inert, false);
   assert.equal(tarefas.size, 0);
+  assert.equal(elemento('capa').hidden, true);
 });
