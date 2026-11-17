@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Livro } from '../Livro.js';
-import { LivroRepository } from '../LivroRepository.js';
+import { Livro } from '../js/Livro.js';
+import { LivroRepository } from '../js/LivroRepository.js';
 
 function criarArmazenamentoFalso() {
   const dados = {};
@@ -71,4 +71,26 @@ test('uma falha ao gravar não altera a lista nem consome um ID', () => {
   armazenamento.setItem = gravar;
   repositorio.salvar(livro);
   assert.equal(livro.id, 1);
+});
+
+test('recusa dados corrompidos sem sobrescrever o armazenamento', () => {
+  for (const dados of ['{quebrado', 'null', '{}', '{"livros":[null],"proximoId":2}', '{"livros":[],"proximoId":0}']) {
+    const armazenamento = criarArmazenamentoFalso();
+    armazenamento.setItem('biblioteca.livros', dados);
+    assert.throws(() => new LivroRepository(armazenamento));
+    assert.equal(armazenamento.getItem('biblioteca.livros'), dados);
+  }
+});
+
+test('cadastro informa falha de gravação e preserva o livro e o repositório', () => {
+  const armazenamento = criarArmazenamentoFalso();
+  armazenamento.setItem = () => { throw new Error('Cota excedida'); };
+  const repositorio = new LivroRepository(armazenamento);
+  const livro = new Livro('Título', 'Autor', '123', 2024);
+  assert.deepEqual(livro.cadastrarLivro(repositorio), {
+    sucesso: false,
+    mensagem: 'Não foi possível salvar o livro. Tente novamente.',
+  });
+  assert.equal(livro.id, null);
+  assert.deepEqual(repositorio.listar(), []);
 });

@@ -26,6 +26,15 @@ export class LivroRepository {
     const dados = this.#armazenamento.getItem(CHAVE_ARMAZENAMENTO);
     if (dados !== null) {
       const estado = JSON.parse(dados);
+      if (!Array.isArray(estado?.livros) ||
+          !Number.isSafeInteger(estado.proximoId) || estado.proximoId < 1 ||
+          estado.livros.some((livro) => !livro ||
+            !Number.isSafeInteger(livro.id) || livro.id < 1 || livro.id >= estado.proximoId ||
+            typeof livro.titulo !== 'string' || typeof livro.autor !== 'string' ||
+            typeof livro.isbn !== 'string' || !Number.isInteger(livro.anoPublicacao) ||
+            livro.anoPublicacao < 1)) {
+        throw new Error('Dados de livros inválidos no armazenamento.');
+      }
       this.#livros = estado.livros;
       this.#proximoId = estado.proximoId;
     }

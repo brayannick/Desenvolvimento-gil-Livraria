@@ -3,33 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de livros</title>
+  <meta name="theme-color" content="#24140f">
+  <meta name="description" content="Abra um novo capítulo na sua biblioteca.">
+  <title>Biblioteca — Um novo capítulo</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <main>
-    <h1>Cadastro de livros</h1>
-    <form id="formCadastro">
-      <div class="campo">
-        <label for="titulo">Título</label>
-        <input type="text" id="titulo" name="titulo" required>
+<body class="entrada">
+  <header class="marca"><a href="index.html">Biblioteca<span>Histórias que encontram você</span></a></header>
+  <main class="palco" aria-label="Acesso à biblioteca">
+    <div class="livro" id="livro" data-tela="login">
+      <div class="miolo">
+        <aside class="pagina pagina-literaria" aria-label="Boas-vindas">
+          <div class="ornamento" aria-hidden="true">❧</div>
+          <p class="capitulo">O seu próximo capítulo</p>
+          <h1>Toda história<br>começa com<br>uma página.</h1>
+          <div class="traco" aria-hidden="true"></div>
+          <p class="convite">Entre, encontre seu lugar<br>e deixe a leitura continuar.</p>
+          <span class="numero-pagina" aria-hidden="true">I</span>
+        </aside>
+        <div class="pagina pagina-formulario">
+          <section id="login" class="tela" aria-labelledby="titulo-login" inert>
+            <div class="ornamento pequeno" aria-hidden="true">❦</div>
+            <h2 id="titulo-login" tabindex="-1">Bem-vindo de volta</h2>
+            <p class="subtitulo">Sua próxima leitura espera por você.</p>
+            <form id="formLogin">
+              <div class="campo"><label for="emailLogin">E-mail</label><input id="emailLogin" name="email" type="email" autocomplete="username" placeholder="voce@exemplo.com" required></div>
+              <div class="campo"><label for="senhaLogin">Senha</label><input id="senhaLogin" name="senha" type="password" autocomplete="current-password" placeholder="Sua senha" required></div>
+              <button class="botao-principal" type="submit">Entrar</button>
+            </form>
+            <p class="troca">Ainda não tem conta? <button type="button" data-destino="cadastro">Criar conta</button></p>
+          </section>
+          <section id="cadastro" class="tela" aria-labelledby="titulo-cadastro" hidden inert>
+            <div class="ornamento pequeno" aria-hidden="true">❦</div>
+            <h2 id="titulo-cadastro" tabindex="-1">Um novo capítulo</h2>
+            <p class="subtitulo">Crie sua conta e faça parte da história.</p>
+            <form id="formConta">
+              <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" placeholder="Seu nome completo" required></div>
+              <div class="campo"><label for="emailConta">E-mail</label><input id="emailConta" name="email" type="email" autocomplete="username" placeholder="voce@exemplo.com" required></div>
+              <div class="campo"><label for="senhaConta">Senha</label><input id="senhaConta" name="senha" type="password" autocomplete="new-password" minlength="8" placeholder="Pelo menos 8 caracteres" required></div>
+              <button class="botao-principal" type="submit">Criar conta</button>
+            </form>
+            <p class="troca">Já tem conta? <button type="button" data-destino="login">Fazer login</button></p>
+          </section>
+          <p id="avisoConta" class="aviso-conta" role="status"></p>
+          <span class="numero-pagina" aria-hidden="true">II</span>
+        </div>
       </div>
-      <div class="campo">
-        <label for="autor">Autor</label>
-        <input type="text" id="autor" name="autor" required>
+      <div class="folhas" aria-hidden="true"><div class="folha folha-1"></div><div class="folha folha-2"></div><div class="folha folha-3"></div></div>
+      <div class="capa" aria-hidden="true">
+        <div class="capa-frente"><span class="floreio">❦</span><span class="capa-titulo">Biblioteca</span><span class="capa-linha"></span><span class="capa-subtitulo">Um mundo entre páginas</span><span class="floreio inferior">❧</span></div>
+        <div class="capa-verso"></div>
       </div>
-      <div class="campo">
-        <label for="isbn">ISBN</label>
-        <input type="text" id="isbn" name="isbn" required>
-      </div>
-      <div class="campo">
-        <label for="anoPublicacao">Ano de publicação</label>
-        <input type="number" id="anoPublicacao" name="anoPublicacao" min="1" step="1" required>
-      </div>
-      <button type="submit">Cadastrar</button>
-    </form>
-    <div id="mensagem" aria-live="polite"></div>
+    </div>
+    <button class="pular" id="pular" type="button">Pular abertura</button>
+    <p class="estado" id="estado" role="status">Abrindo um novo capítulo…</p>
+    <noscript><p class="sem-script">Ative o JavaScript para abrir o livro ou <a href="livros.html">acesse o cadastro de livros</a>.</p></noscript>
   </main>
-  <script type="module" src="js/app.js"></script>
+  <footer class="rodape"><span>Feito para quem vive entre páginas.</span><a href="livros.html">Explorar cadastro de livros</a></footer>
+  <script type="module" src="js/entrada.js"></script>
 </body>
 </html>

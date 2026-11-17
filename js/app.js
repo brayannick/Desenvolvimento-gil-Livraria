@@ -3,7 +3,13 @@ import { LivroRepository } from './LivroRepository.js';
 
 const formulario = document.getElementById('formCadastro');
 const mensagem = document.getElementById('mensagem');
-const repositorio = new LivroRepository(localStorage);
+let repositorio;
+try {
+  repositorio = new LivroRepository(window.localStorage);
+} catch {
+  exibirMensagem('Não foi possível acessar os livros salvos. Verifique o armazenamento do navegador.', false);
+  formulario.querySelector('button').disabled = true;
+}
 
 function lerAno(texto) {
   const valor = texto.trim();
@@ -17,6 +23,8 @@ function exibirMensagem(texto, sucesso) {
 
 formulario.addEventListener('submit', (evento) => {
   evento.preventDefault();
+
+  if (!repositorio) return;
 
   const campos = formulario.elements;
   const livro = new Livro(
