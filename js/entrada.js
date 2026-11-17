@@ -7,6 +7,12 @@ let telaAtual = 'login';
 let temporizador;
 let ocupado = true;
 
+const versoFinal = document.getElementById('paginaLiteraria').cloneNode(true);
+versoFinal.removeAttribute('id');
+versoFinal.removeAttribute('aria-label');
+versoFinal.classList.add('verso-final');
+document.getElementById('folhaFinal').append(versoFinal);
+
 function concluir(focar = false) {
   clearTimeout(temporizador);
   document.getElementById('capa').hidden = true;
@@ -32,8 +38,8 @@ function trocarTela(destino) {
     telaAtual = destino;
     livro.dataset.tela = destino;
     document.getElementById(telaAtual).hidden = false;
-    temporizador = setTimeout(() => concluir(true), reduzirMovimento.matches ? 0 : 600);
-  }, reduzirMovimento.matches ? 0 : 450);
+    temporizador = setTimeout(() => concluir(true), reduzirMovimento.matches ? 0 : 1000);
+  }, reduzirMovimento.matches ? 0 : 250);
 }
 
 pular.addEventListener('click', () => concluir(true));
@@ -55,6 +61,6 @@ if (reduzirMovimento.matches) {
 } else {
   requestAnimationFrame(() => {
     livro.classList.add('abrindo');
-    temporizador = setTimeout(() => concluir(), 4000);
+    temporizador = setTimeout(() => concluir(), 4450);
   });
 }
