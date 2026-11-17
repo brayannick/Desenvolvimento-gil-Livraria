@@ -12,8 +12,10 @@ Projeto acadêmico da disciplina de Fundamentos da Engenharia de Software para p
 ## Organização
 
 ```text
-index.html                 Formulário de cadastro
+index.html                 Livro animado com login e criação de conta
+livros.html                Formulário de cadastro de livros
 css/style.css              Estilos da interface
+js/entrada.js              Abertura do livro e troca entre login e criação de conta
 js/app.js                  Integração do formulário com o cadastro
 js/Livro.js                Modelo, validações e mensagens
 js/LivroRepository.js      Persistência e consulta por ISBN
@@ -47,3 +49,9 @@ A interface injeta o `localStorage` no repositório. A chave `biblioteca.livros`
 Se o armazenamento estiver bloqueado ou contiver dados inválidos, a interface informa o problema e desabilita o cadastro, sem apagar os dados existentes. Se uma gravação falhar, a lista e o próximo identificador permanecem inalterados.
 
 Os dados pertencem ao navegador e à origem usados no cadastro; limpar o armazenamento do navegador remove os livros. Empréstimos e reservas estão fora do escopo desta entrega.
+
+## Interface do livro
+
+Ao carregar a página inicial, o livro aparece fechado, abre a capa e passa três folhas até o login. Os links para criar conta ou voltar ao login repetem a passagem de folhas. A abertura pode ser pulada; a preferência de movimento reduzido mostra o formulário imediatamente. No celular, o livro ocupa uma única página para preservar a leitura dos campos.
+
+A interface usa HTML, CSS 3D e JavaScript puro, sem bibliotecas de animação ou serviços externos. Login e criação de conta são uma demonstração visual: não criam usuários, não autenticam nem armazenam senhas. Os formulários informam essa limitação ao enviar e limpam o campo de senha. O cadastro de livros continua disponível pelo link no rodapé, sem depender de uma conta.
