@@ -55,6 +55,6 @@ if (reduzirMovimento.matches) {
 } else {
   requestAnimationFrame(() => {
     livro.classList.add('abrindo');
-    temporizador = setTimeout(() => concluir(), 3500);
+    temporizador = setTimeout(() => concluir(), 4000);
   });
 }
