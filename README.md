@@ -57,3 +57,5 @@ Ao carregar a página inicial, o livro aparece fechado, abre a capa e passa trê
 A interface usa HTML, CSS 3D e JavaScript puro, sem bibliotecas de animação ou serviços externos. Login e criação de conta são uma demonstração visual: não criam usuários, não autenticam nem armazenam senhas. Os formulários informam essa limitação ao enviar e limpam o campo de senha. O cadastro de livros continua disponível pelo link no rodapé, sem depender de uma conta.
 
 O acabamento usa texturas SVG locais para a granulação de couro e papel e os veios da madeira, combinadas com manchas e sombras em CSS. Ao terminar ou pular a abertura, a capa é ocultada para não permanecer projetada ao lado das páginas.
+
+Durante a abertura, as folhas intermediárias ficam sem informações. O formulário é descoberto pela última folha, cujo verso traz o conteúdo da página esquerda; a troca entre login e criação de conta também acontece enquanto as folhas cobrem o formulário.

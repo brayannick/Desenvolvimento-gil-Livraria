@@ -94,7 +94,7 @@ input::placeholder { color: #816a50; }
 .floreio { position: absolute; top: 65px; font-size: 60px; }
 .floreio.inferior { top: auto; bottom: 65px; }
 .folhas { z-index: 4; position: absolute; inset: 9px; pointer-events: none; transform-style: preserve-3d; }
-.folha { position: absolute; top: 0; bottom: 0; left: 50%; width: 50%; transform-origin: left center; opacity: 0; background: url('../assets/grain.svg') 0 0 / 180px 180px, radial-gradient(ellipse at 90% 5%, #a06c3440, transparent 42%), linear-gradient(90deg, #b68d50, #f8e8c7 10%, #e7cd9c 93%, #ac8249); box-shadow: 6px 8px 14px #29170c38; border: 1px solid #b79a66; border-radius: 0 4px 4px 0; backface-visibility: visible; }
+.folha { position: absolute; top: 0; bottom: 0; left: 50%; width: 50%; transform-origin: left center; opacity: 0; box-shadow: 6px 8px 14px #29170c38; border: 1px solid #b79a66; border-radius: 0 4px 4px 0; backface-visibility: visible; }
 .folha::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #40200d88, transparent 18%, #fff4d999 48%, transparent 75%, #4c2a1088); border-radius: inherit; opacity: 0; }
 .abrindo .folha::before, .virando .folha::before { animation: reflexo-folha; animation-duration: inherit; animation-delay: inherit; animation-timing-function: ease-in-out; }
 .folha::after { content: '❦'; position: absolute; inset: 22px; border: 1px solid #b8975b80; text-align: center; padding-top: 35%; font-size: 50px; color: #a1763f66; }
@@ -102,18 +102,18 @@ input::placeholder { color: #816a50; }
 .livro.abrindo { animation: centralizar 1800ms 400ms var(--ease-livro) both; }
 /* O miolo esquerdo só aparece quando a capa já está apoiada. */
 .abrindo .miolo { animation: preparar-miolo 1ms 1300ms forwards, revelar-miolo 1ms 2200ms forwards; }
-.abrindo .pagina-literaria { animation: revelar 250ms 2200ms both; }
-.abrindo .pagina-formulario .tela { animation: revelar 200ms 3750ms both; }
+.abrindo .miolo > .pagina-literaria > * { visibility: hidden; }
+.abrindo .pagina-formulario .tela, .abrindo .pagina-formulario > .numero-pagina { animation: conteudo-pronto 1ms 3300ms both; }
 .abrindo .folhas { animation: folhas-prontas 1ms 2200ms both; }
 .abrindo .capa { animation: abrir-capa 1800ms 400ms var(--ease-livro) both; }
 .abrindo .folha-1 { animation: passar 1100ms 2350ms var(--ease-livro) forwards; }
 .abrindo .folha-2 { animation: passar 1100ms 2600ms var(--ease-livro) forwards; }
-.abrindo .folha-3 { opacity: 1; animation: passar 1100ms 2850ms var(--ease-livro) forwards; }
+.abrindo .folha-3 { opacity: 1; animation: passar-final 1100ms 3300ms linear forwards; }
 .livro.aberto { transform: translateX(0); }
 .aberto .miolo { opacity: 1; clip-path: inset(0); }
 .aberto .capa { visibility: hidden; pointer-events: none; transform: rotateY(-180deg); }
 .virando .folha-1 { animation: passar 850ms var(--ease-livro) both; }
-.virando .folha-2 { animation: passar 850ms 120ms var(--ease-livro) both; }
+.virando .folha-2 { opacity: 1; animation: passar 850ms 350ms linear forwards; }
 .pular { position: absolute; bottom: 13px; background: transparent; color: #dec69e; border: 1px solid #9c7947; padding: 9px 18px; border-radius: 3px; font-size: 13px; }
 .estado { position: absolute; bottom: -21px; color: #bca27e; font-size: 12px; }
 .rodape { display: flex; justify-content: space-between; gap: 16px; padding: 26px 40px; font: 12px/1.5 Arial, sans-serif; color: #c4aa87; }
@@ -124,7 +124,14 @@ input::placeholder { color: #816a50; }
 @keyframes folhas-prontas { from { visibility: hidden; } to { visibility: visible; } }
 @keyframes preparar-miolo { to { opacity: 1; } }
 @keyframes revelar-miolo { to { clip-path: inset(0); } }
-@keyframes revelar { from { opacity: 0; } to { opacity: 1; } }
+@keyframes conteudo-pronto { from { visibility: hidden; } to { visibility: visible; } }
+@keyframes passar-final { from { transform: rotateY(0) translateZ(1px); } to { transform: rotateY(-180deg) translateZ(1px); } }
+.folha, .frente-final { background: url('../assets/grain.svg') 0 0 / 180px 180px, radial-gradient(ellipse at 90% 5%, #a06c3440, transparent 42%), linear-gradient(90deg, #b68d50, #f8e8c7 10%, #e7cd9c 93%, #ac8249); }
+.folha-3 { transform-style: preserve-3d; background: none; border: 0; box-shadow: none; }
+.frente-final { position: absolute; inset: 0; transform: translateZ(1px); backface-visibility: hidden; border: 1px solid #b79a66; border-radius: inherit; }
+.folha-3::before, .folha-3::after { display: none; }
+.folha .verso-final { position: absolute; inset: 0; transform: rotateY(180deg) translateZ(1px); backface-visibility: hidden; }
+.virando .folha-3 { visibility: hidden; }
 @keyframes passar {
   0% { transform: rotateY(0) translateZ(1px); opacity: 1; }
   6% { opacity: 1; }

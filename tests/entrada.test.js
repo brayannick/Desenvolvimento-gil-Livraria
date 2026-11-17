@@ -5,11 +5,14 @@ test('abre o livro, troca telas com foco e não armazena senhas', async (t) => {
   const elementos = new Map();
   function elemento(id) {
     if (!elementos.has(id)) elementos.set(id, {
-      hidden: id === 'cadastro', inert: true, dataset: {}, textContent: '', value: 'senha-teste',
+      id, hidden: id === 'cadastro', inert: true, dataset: {}, textContent: '', value: 'senha-teste',
       classes: new Set(), eventos: {},
       classList: { add(...nomes) { nomes.forEach(n => elemento(id).classes.add(n)); }, remove(...nomes) { nomes.forEach(n => elemento(id).classes.delete(n)); } },
       addEventListener(evento, callback) { this.eventos[evento] = callback; },
       focus() { this.focado = true; },
+      cloneNode() { return elemento(`${id}-clone`); },
+      removeAttribute(nome) { delete this[nome]; },
+      append(filho) { this.filho = filho; },
       querySelector() { return elemento(`${id}-senha`); },
     });
     return elementos.get(id);
@@ -31,6 +34,8 @@ test('abre o livro, troca telas com foco e não armazena senhas', async (t) => {
   function avancar() { const [chave, callback] = tarefas.entries().next().value; tarefas.delete(chave); callback(); }
   await import('../js/entrada.js?teste');
   assert.equal(elemento('livro').classes.has('abrindo'), true);
+  assert.equal(elemento('folhaFinal').filho.id, undefined);
+  assert.equal(elemento('folhaFinal').filho.classes.has('verso-final'), true);
   assert.equal(elemento('login').inert, true);
   avancar();
   assert.equal(elemento('livro').classes.has('aberto'), true);
