@@ -59,6 +59,12 @@ export class LivroRepository {
     return this.#livros.some((livro) => normalizarIsbn(livro.isbn) === alvo);
   }
 
+  buscarPorTitulo(titulo) {
+    const normalizar = texto => texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR');
+    const termo = normalizar(titulo.trim());
+    return this.#livros.filter(livro => normalizar(livro.titulo).includes(termo));
+  }
+
   listar() {
     return [...this.#livros];
   }
