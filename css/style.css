@@ -187,8 +187,9 @@ input::placeholder { color: #816a50; }
 }
 
 
-.livro-cadastro { min-height: 580px; }
-.pagina-cadastro { overflow-y: auto; }
+.livro-cadastro { height: auto; min-height: 580px; }
+.livro-cadastro .miolo { position: relative; min-height: inherit; }
+.pagina-cadastro { overflow: visible; }
 .pagina-cadastro #mensagem:not(:empty) { margin-top: 10px; }
 .sessao-conta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; font: 12px/1.5 Arial, sans-serif; color: #76573d; }
 .sessao-conta button { min-height: 44px; border: 0; padding: 8px 4px; color: inherit; background: transparent; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
@@ -198,7 +199,8 @@ input::placeholder { color: #816a50; }
   .pagina-cadastro form > button { grid-column: 1 / -1; }
 }
 
-.livro:is([data-tela="acervo"], [data-tela="consulta"]) .pagina-formulario { overflow-y: auto; padding-bottom: 38px; }
+.livro:is([data-tela="acervo"], [data-tela="consulta"]) .pagina-formulario { display: flex; flex-direction: column; overflow: visible; padding-bottom: 38px; }
+.livro:is([data-tela="acervo"], [data-tela="consulta"]) .pagina-formulario > .tela { flex: 1; }
 .livro:is([data-tela="acervo"], [data-tela="consulta"]) .pagina-cadastro { overflow: visible; }
 
 .pagina-literaria .sessao-conta { position: absolute; left: 24px; right: 24px; top: 18px; justify-content: space-between; text-align: left; overflow-wrap: anywhere; }
@@ -221,7 +223,7 @@ input::placeholder { color: #816a50; }
 .lista-livros h3 { margin: 0 0 2px; font-size: 17px; font-weight: normal; }
 .lista-livros p { margin: 0; font: 12px/1.5 Arial, sans-serif; color: #76573d; }
 
-#acervo { display: flex; flex-direction: column; min-height: 100%; }
+#acervo { display: flex; flex-direction: column; min-height: 0; }
 .aviso-conta:empty { display: none; }
 .navegacao-folha { margin: auto 0 0; padding-top: 12px; align-self: flex-end; text-align: right; }
 .navegacao-folha button { min-height: 44px; border: 0; padding: 8px 0 8px 8px; background: transparent; color: var(--tinta); font: italic 12px/1.5 Georgia, serif; text-underline-offset: 4px; }
