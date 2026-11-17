@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Livro } from '../Livro.js';
-import { LivroRepository } from '../LivroRepository.js';
+import { Livro } from '../js/Livro.js';
+import { LivroRepository } from '../js/LivroRepository.js';
 
 test('mantém as mensagens e a ordem das validações de campos obrigatórios', () => {
   const livro = new Livro(' \t', '', null, undefined);

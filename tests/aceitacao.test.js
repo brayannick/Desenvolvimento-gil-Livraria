@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import Livro from '../js/Livro.js';
-import LivroRepository from '../js/LivroRepository.js';
+import { Livro } from '../js/Livro.js';
+import { LivroRepository } from '../js/LivroRepository.js';
 
 test('CA01: Cadastrar livro com dados válidos com sucesso', () => {
   const repo = new LivroRepository();

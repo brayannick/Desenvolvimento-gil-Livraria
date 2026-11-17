@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import { Livro } from '../Livro.js';
-import { LivroRepository } from '../LivroRepository.js';
+import { Livro } from '../js/Livro.js';
+import { LivroRepository } from '../js/LivroRepository.js';
 
 test('RN02, RN04, RN05: cadastra livro válido com id automático e bloqueia ISBN duplicado', () => {
   const repo = new LivroRepository();
